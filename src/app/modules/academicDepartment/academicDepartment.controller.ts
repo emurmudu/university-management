@@ -11,7 +11,7 @@ const createAcademicDepartment = catchAsync(async(req, res) =>{
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Academic department created successfully',
+        message: 'Academic department is created successfully',
         data: result,
     })
 })
@@ -46,7 +46,7 @@ const updateAcademicDepartment = catchAsync(async(req, res) =>{
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'Academic department is retrieved successfully',
+        message: 'Academic department is updated successfully',
         data: result,
     })
 })
