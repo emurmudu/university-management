@@ -6,6 +6,7 @@ import {
   UserName,
 } from './student.interface';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
+import { AcademicDepartment } from '../academicDepartment/academicDepartment.model';
 
 const userNameSchema = new Schema<UserName>({
   firstName: {
@@ -97,6 +98,7 @@ const studentSchema = new Schema<TStudent>(
       type: String,
       enum: {
         values: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+        message: '{VALUE} is not a valid blood group',
       },
       required: true,
     },
@@ -107,7 +109,15 @@ const studentSchema = new Schema<TStudent>(
     profileImg: { type: String },
     admissionSemester: {
       type: Schema.Types.ObjectId,
-      ref: AcademicSemester,
+      ref: 'AcademicSemester',
+    },
+    isDeleted:{
+      type: Boolean,
+      default: false,
+    },
+    academicDepartment: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicDepartment',
     },
   },
   {
