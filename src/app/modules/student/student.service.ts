@@ -3,6 +3,9 @@ import { StudentModel } from './student.model';
 import AppError from '../../errors/AppError';
 import { User } from '../user/user.model';
 import httpStatus from 'http-status';
+import { TStudent } from './student.interface';
+
+
 
 const getAllStudentsFromDB = async () => {
   const result = await StudentModel.find()
@@ -16,9 +19,11 @@ const getAllStudentsFromDB = async () => {
   return result;
 };
 
+
+
 const getSingleStudentFromDB = async (id: string) => {
-  // const result = await StudentModel.findOne({ id });
-  const result = await StudentModel.findById(id)
+  // const result = await StudentModel.findById(id) // for mongoose default id = _id
+  const result = await StudentModel.findOne({ id }) // for custom generated id. if async use {id} instead {id:id}
     .populate('admissionSemester')
     .populate({
       path: 'academicDepartment',
@@ -28,6 +33,17 @@ const getSingleStudentFromDB = async (id: string) => {
     });
   return result;
 };
+
+
+const updateStudentIntoDB = async (id: string, payload: Partial<TStudent>) => {
+
+
+  const result = await StudentModel.findOneAndUpdate({ id }, payload);
+  return result;
+};
+
+
+
 const deleteStudentFromDB = async (id: string) => {
   const session = await mongoose.startSession();
   try {
@@ -60,8 +76,11 @@ const deleteStudentFromDB = async (id: string) => {
   }
 };
 
+
+
 export const StudentServices = {
   getAllStudentsFromDB,
   getSingleStudentFromDB,
   deleteStudentFromDB,
+  updateStudentIntoDB,
 };
