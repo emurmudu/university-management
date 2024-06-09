@@ -20,17 +20,17 @@ const academicDepartmentSchema = new Schema<TAcademicDepartment>({
 })
 
 // same academic department name error handling
-academicDepartmentSchema.pre('save', async function(next){
-    const isDepartmentExists = await AcademicDepartment.findOne({
-        name : this.name,
-    })
-    if(isDepartmentExists){
-        throw new AppError(httpStatus.NOT_FOUND, 'This department is already exist')
-    }
+// academicDepartmentSchema.pre('save', async function(next){
+//     const isDepartmentExists = await AcademicDepartment.findOne({
+//         name : this.name,
+//     })
+//     if(isDepartmentExists){
+//         throw new AppError(httpStatus.NOT_FOUND, 'This department is already exist')
+//     }
 
-    next();
+//     next();
 
-})
+// })
 
 
 
