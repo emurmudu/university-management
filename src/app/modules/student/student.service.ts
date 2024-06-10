@@ -43,7 +43,7 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   const sortQuery = filterQuery.sort(sort);
 
   let limit = 1;
-  
+
   if(query.limit){
     limit = query.limit;
   }
@@ -74,14 +74,7 @@ const updateStudentIntoDB = async (id: string, payload: Partial<TStudent>) => {
     ...remainingStudentData,
   };
 
-  /*
-    guardian : {
-       fatherOccupation : "Teacher"
-    }
-    
-    guardina.fatherOccupation = "Teacher"
-    
-   */
+  
   if (name && Object.keys(name).length) {
     for (const [key, value] of Object.entries(name)) {
       modifiedUpdatedData[`name.${key}`] = value;
