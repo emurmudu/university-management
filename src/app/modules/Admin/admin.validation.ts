@@ -18,7 +18,7 @@ const createUserNameValidationSchema = z.object({
         email: z.string().email(),
         contactNo: z.string(),
         emergencyContactNo: z.string(),
-        bloogGroup: z.enum([...BloodGroup] as [string, ...string[]]),
+        bloodGroup: z.enum([...BloodGroup] as [string, ...string[]]),
         presentAddress: z.string(),
         permanentAddress: z.string(),
         profileImg: z.string(),
